@@ -2,7 +2,7 @@
 
 $UPLOAD_FROM_ABSOLUTE="$GITHUB_WORKSPACE/$UPLOAD_FROM"
 
-echo $SKICKA_TOKENCACHE_JSON > /root/.skicka.tokencache.json
+echo $SKICKA_TOKENCACHE_JSON > $HOME/.skicka.tokencache.json
 
 skicka upload -ignore-times "$UPLOAD_FROM_ABSOLUTE" "$UPLOAD_TO"
 
