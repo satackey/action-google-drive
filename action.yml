@@ -1,0 +1,22 @@
+name: 'Upload'
+description: 'Upload files to Google Drive'
+inputs:
+  skicka-tokencache-json:
+    description: 'Content of `~/.skicka.tokencache.json` created by the `skicka` command'
+    required: true
+
+  upload-from:
+    description: 'The path where the files to upload are located'
+    required: false
+
+  upload-to:
+    description: 'The path where the files to be uploaded is located'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env: 
+    SKICKA_TOKENCACHE_JSON: ${{ skicka-tokencache-json }}
+    UPLOAD_FROM: ${{ upload-from }}
+    UPLOAD_TO: ${{ upload-to }}
