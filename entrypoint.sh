@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 skicka init
 echo $SKICKA_TOKENCACHE_JSON > $HOME/.skicka.tokencache.json
 
