@@ -17,6 +17,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env: 
-    SKICKA_TOKENCACHE_JSON: ${{ skicka-tokencache-json }}
-    UPLOAD_FROM: ${{ upload-from }}
-    UPLOAD_TO: ${{ upload-to }}
+    SKICKA_TOKENCACHE_JSON: ${{ inputs.skicka-tokencache-json }}
+    UPLOAD_FROM: ${{ inputs.upload-from }}
+    UPLOAD_TO: ${{ inputs.upload-to }}
