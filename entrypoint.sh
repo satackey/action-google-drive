@@ -1,8 +1,9 @@
 #!/bin/sh
 
-UPLOAD_FROM_ABSOLUTE="$GITHUB_WORKSPACE/$UPLOAD_FROM"
-
+skicka init
 echo $SKICKA_TOKENCACHE_JSON > $HOME/.skicka.tokencache.json
+
+UPLOAD_FROM_ABSOLUTE="$GITHUB_WORKSPACE/$UPLOAD_FROM"
 
 skicka upload -ignore-times "$UPLOAD_FROM_ABSOLUTE" "$UPLOAD_TO"
 
