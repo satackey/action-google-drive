@@ -14,6 +14,11 @@ inputs:
     description: 'The path where the files to be uploaded is located'
     required: true
 
+  remove-outdated:
+    description: 'Whether to delete files that do not exist locally'
+    default: 'true'
+    required: false
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -21,3 +26,4 @@ runs:
     SKICKA_TOKENCACHE_JSON: ${{ inputs.skicka-tokencache-json }}
     UPLOAD_FROM: ${{ inputs.upload-from }}
     UPLOAD_TO: ${{ inputs.upload-to }}
+    REMOVE_OUTDATED: ${{ inputs.remove-outdated }}
