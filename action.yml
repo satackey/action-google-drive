@@ -1,4 +1,4 @@
-name: 'Upload'
+name: 'Upload to Google Drive'
 description: 'Upload files to Google Drive'
 inputs:
   skicka-tokencache-json:
