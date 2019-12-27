@@ -1,5 +1,10 @@
 name: 'Upload to Google Drive'
 description: 'Upload files to Google Drive'
+
+branding:
+  icon: 'upload-cloud'
+  color: 'gray-dark'
+
 inputs:
   skicka-tokencache-json:
     description: 'Content of `~/.skicka.tokencache.json` created by the `skicka` command'
@@ -7,7 +12,7 @@ inputs:
 
   upload-from:
     description: 'The path where the files to upload are located'
-    default: ./
+    default: './'
     required: false
 
   upload-to:

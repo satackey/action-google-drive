@@ -43,7 +43,7 @@ Google Driveへのアップロードには、[`skicka`](https://github.com/googl
 ## 使用例
 
 ```yaml
-name: Upload
+- name: Upload to Google Drive
   uses: satackey/action-google-drive@v1
   with:
     skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
