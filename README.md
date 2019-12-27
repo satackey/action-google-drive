@@ -37,7 +37,7 @@ Google Driveへのアップロードには、[`skicka`](https://github.com/googl
 
 ### `remove-outdated`
 任意 ローカルにはないが、Google Drive上には存在するファイルを削除するかどうか。  
-`'true'`か`'false'`のどちらかの値
+`'true'`か`'false'`のどちらかの値  
 **注意**: ローカルに存在しないファイルを検出するため、1度ダウンロードを行うので、大きいファイルを含む操作を行う時はオフを推奨。
 
 ## 使用例
