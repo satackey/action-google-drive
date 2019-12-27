@@ -7,6 +7,7 @@ inputs:
 
   upload-from:
     description: 'The path where the files to upload are located'
+    default: ./
     required: false
 
   upload-to:
