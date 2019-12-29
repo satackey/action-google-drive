@@ -14,7 +14,7 @@ Google Driveへのアップロードには、[`skicka`](https://github.com/googl
 #### それ以外
 1. Dockerが使用できる環境を用意し、以下のコマンドを実行します。
     ```sh
-    docker run --rm -it --entrypoint '' satackey/skicka sh -c 'skicka --no-browser-auth ls && cat /root/.skicka.tokencache.json'
+    docker run --rm -it --entrypoint "" satackey/skicka sh -c "skicka --no-browser-auth ls && cat /root/.skicka.tokencache.json"
     ```
 1. ブラウザで表示されたURLにアクセスします。
 1. アクセスを許可し、コード表示されたら、ターミナルに戻り貼り付けます。
