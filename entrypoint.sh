@@ -10,7 +10,7 @@ if [ -n "$GOOGLE_CLIENT_ID" ]; then
     sed -i -e "s/;clientsecret=YOUR_GOOGLE_APP_SECRET/clientid=$GOOGLE_CLIENT_SECRET/" ~/.skicka.config
 fi
 
-skicka upload -ignore-times "$UPLOAD_FROM" "$UPLOAD_TO"
+skicka upload -no-browser-auth -ignore-times "$UPLOAD_FROM" "$UPLOAD_TO"
 
 # Remove outdated
 if [ $REMOVE_OUTDATED == "true" ]; then
