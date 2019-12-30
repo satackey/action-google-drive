@@ -19,5 +19,6 @@ if [ $REMOVE_OUTDATED == "true" ]; then
         sed -E "s/.*bytes to //" | \
         xargs -I{} skicka rm "$UPLOAD_FROM{}" || true
 elif [ $REMOVE_OUTDATED != "false" ]; then
+    echo '$REMOVE_OUTDATED must be "true" or "false".'
     exit 1
 fi
