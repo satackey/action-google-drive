@@ -2,7 +2,10 @@
 
 set -eu
 
-# skicka init
+if [ ! -e ~/.skicka.config ]; then
+    skicka init
+fi
+
 echo $SKICKA_TOKENCACHE_JSON > $HOME/.skicka.tokencache.json
 
 if [ -n "$GOOGLE_CLIENT_ID" ]; then
