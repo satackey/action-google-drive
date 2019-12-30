@@ -1,7 +1,6 @@
 FROM satackey/skicka
 
-WORKDIR /github
-RUN mv /root ./home
+RUN mv /root /github/home
 
 WORKDIR /src
 COPY entrypoint.sh ./

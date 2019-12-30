@@ -19,6 +19,14 @@ inputs:
     description: 'The path where the files to be uploaded is located'
     required: true
 
+  google-client-id:
+description: Your Google Drive API client ID
+    required: false
+
+  google-client-secret:
+    description: Your Google Drive API client secret
+    required: false
+
   remove-outdated:
     description: 'Whether to delete files that do not exist locally'
     default: 'true'
