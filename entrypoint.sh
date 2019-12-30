@@ -7,10 +7,10 @@ echo $SKICKA_TOKENCACHE_JSON > $HOME/.skicka.tokencache.json
 
 if [ -n "$GOOGLE_CLIENT_ID" ]; then
     sed -i -e "s/;clientid=YOUR_GOOGLE_APP_CLIENT_ID/clientid=$GOOGLE_CLIENT_ID/" ~/.skicka.config
-    sed -i -e "s/;clientsecret=YOUR_GOOGLE_APP_SECRET/clientid=$GOOGLE_CLIENT_SECRET/" ~/.skicka.config
+    sed -i -e "s/;clientsecret=YOUR_GOOGLE_APP_SECRET/clientsecret=$GOOGLE_CLIENT_SECRET/" ~/.skicka.config
 fi
 
-skicka upload -no-browser-auth -ignore-times "$UPLOAD_FROM" "$UPLOAD_TO"
+skicka -no-browser-auth upload -ignore-times "$UPLOAD_FROM" "$UPLOAD_TO"
 
 # Remove outdated
 if [ $REMOVE_OUTDATED == "true" ]; then
