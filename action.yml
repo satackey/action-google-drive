@@ -34,8 +34,8 @@ inputs:
 
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: docker
+  image: docker://satackey/action-google-drive:v1.1.0
   env:
     SKICKA_TOKENCACHE_JSON: ${{ inputs.skicka-tokencache-json }}
     UPLOAD_FROM: ${{ inputs.upload-from }}
