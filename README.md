@@ -24,16 +24,24 @@ Google Driveへのアップロードには、[`skicka`](https://github.com/googl
 
 ### `skicka-tokencache-json`
 
-**必須** `skicka`で生成された、アップロードするアカウントの認証情報。
+＿**必須**＿ `skicka`で生成された、アップロードするアカウントの認証情報。
 (`~/.skicka.tokencache.json`の内容)
 
 ### `upload-from`
 
-任意 アップロード元。 デフォルトはカレントディレクトリ。
+＿任意＿ アップロード元。 デフォルトはカレントディレクトリ。
 
 ### `upload-to`
 
-**必須** アップロード先。 
+＿**必須**＿ アップロード先。 
+
+### `google-client-id`
+
+＿任意＿ skicka を使用する際の Google APIs の OAuth2.0 Client ID。
+
+### `google-client-secret`
+
+＿任意＿ skicka を使用する際の Google APIs の OAuth2.0 Client Secret。
 
 ### `remove-outdated`
 任意 ローカルにはないが、Google Drive上には存在するファイルを削除するかどうか。  
