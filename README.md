@@ -9,15 +9,16 @@ Google Driveへのアップロードには、[`skicka`](https://github.com/googl
 
 ### トークンの作成
 
-#### 既に`skicka`を使っている場合
+#### 既に `skicka` を使っている方
 
 GitHub リポジトリ -> Settings -> Secrets にて、Name に `SKICKA_TOKENCACHE_JSON` を、Value に `~/.skicka.tokencache.json` の内容を入力して登録します。
 
 
-#### それ以外
-1. Dockerが使用できる環境を用意し、以下のコマンドを実行します。
+#### `skicka` を使ったことがない方
+
+1. Docker が使用できる環境を用意し、以下のコマンドを実行します。
     ```sh
-    docker run --rm -it --entrypoint "" satackey/skicka sh -c "skicka --no-browser-auth ls && cat /root/.skicka.tokencache.json"
+    docker run --rm -it --entrypoint "" satackey/skicka sh -c "skicka -no-browser-auth ls && cat /root/.skicka.tokencache.json"
     ```
 1. ブラウザで表示されたURLにアクセスします。
 1. アクセスを許可し、コード表示されたら、ターミナルに戻り貼り付けます。
@@ -26,6 +27,27 @@ GitHub リポジトリ -> Settings -> Secrets にて、Name に `SKICKA_TOKENCAC
     ```json
     {"ClientId":"xxx-xxxxx.apps.googleusercontent.com","access_token":"xxxx.xx-xxxxxxxxx","token_type":"Bearer","refresh_token":"x//xxxxxxx-xxxxxxx","expiry":"2020-01-03T06:11:01.3298117Z"}
     ````
+
+##### `skicka` を使ったことがない方・手順1のログイン時の問題の回避
+
+2020年1月2日現在、初めてskickaにログインするアカウントでは、
+`このアプリでは「Google でログイン」機能が一時的に無効` と表示される問題が発生することがあります。
+Google Drive API の Client ID と Client Secret をセットアップし、skicka に設定することで回避できます。
+[こちらの記事](https://qiita.com/satackey/items/34c7fc5bf77bd2f5c633)にしたがって、Client ID と Client Secret をセットアップしてください。
+
+`xxxx-your-google-client-id-xx.googleusercontent.com` と `xxx_yourGoogleClientSecret_xxxx` を置き換え、次のコマンドを入力してコンテナを起動します。
+
+```shell
+$ docker run -e GOOGLE_CLIENT_ID=xxxx-your-google-client-id-xx.googleusercontent.com -e GOOGLE_CLIENT_SECRET=xxx_yourGoogleClientSecret_xxxx --rm -it --entrypoint "ash" satackey/skicka
+```
+
+コンテナが起動したら次のコマンドを実行します。
+
+```
+# sed -i -e "s/;clientid=YOUR_GOOGLE_APP_CLIENT_ID/clientid=$GOOGLE_CLIENT_ID/" ~/.skicka.config && sed -i -e "s/;clientsecret=YOUR_GOOGLE_APP_SECRET/clientsecret=$GOOGLE_CLIENT_SECRET/" ~/.skicka.config && skicka -no-browser-auth ls && cat /root/.skicka.tokencache.json
+```
+
+手順2に戻って進めてください。
 
 ## Inputs
 
