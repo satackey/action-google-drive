@@ -1,83 +1,8 @@
-# action-google-drive
+# Upload to Google Drive
 
-このアクションは指定されたディレクトリ、ファイルをGoogle Driveへアップロードします。
+This action uploads the specified directory/files to Google Drive.
 
-## 準備
-
-Google Driveへのアップロードには、[`skicka`](https://github.com/google/skicka)を使用しています。
-事前にトークンを作成し、Secretsに登録を行う必要があります。
-
-### トークンの作成
-
-#### 既に `skicka` を使っている方
-
-GitHub リポジトリ -> Settings -> Secrets にて、Name に `SKICKA_TOKENCACHE_JSON` を、Value に `~/.skicka.tokencache.json` の内容を入力して登録します。
-
-
-#### `skicka` を使ったことがない方
-
-1. Docker が使用できる環境を用意し、以下のコマンドを実行します。
-    ```sh
-    docker run --rm -it --entrypoint "" satackey/skicka sh -c "skicka -no-browser-auth ls && cat /root/.skicka.tokencache.json"
-    ```
-1. ブラウザで表示されたURLにアクセスします。
-1. アクセスを許可し、コード表示されたら、ターミナルに戻り貼り付けます。
-1. GitHub リポジトリ -> Settings -> Secrets にて、Name に `SKICKA_TOKENCACHE_JSON` を、Value に最後に表示された以下の様なテキストを入力して登録します。
-
-    ```json
-    {"ClientId":"xxx-xxxxx.apps.googleusercontent.com","access_token":"xxxx.xx-xxxxxxxxx","token_type":"Bearer","refresh_token":"x//xxxxxxx-xxxxxxx","expiry":"2020-01-03T06:11:01.3298117Z"}
-    ````
-
-##### `skicka` を使ったことがない方・手順1のログイン時の問題の回避
-
-2020年1月2日現在、初めてskickaにログインするアカウントでは、
-`このアプリでは「Google でログイン」機能が一時的に無効` と表示される問題が発生することがあります。
-Google Drive API の Client ID と Client Secret をセットアップし、skicka に設定することで回避できます。
-[こちらの記事](https://qiita.com/satackey/items/34c7fc5bf77bd2f5c633)にしたがって、Client ID と Client Secret をセットアップしてください。
-
-`xxxx-your-google-client-id-xx.googleusercontent.com` と `xxx_yourGoogleClientSecret_xxxx` を置き換え、次のコマンドを入力してコンテナを起動します。
-
-```shell
-$ docker run -e GOOGLE_CLIENT_ID=xxxx-your-google-client-id-xx.googleusercontent.com -e GOOGLE_CLIENT_SECRET=xxx_yourGoogleClientSecret_xxxx --rm -it --entrypoint "ash" satackey/skicka
-```
-
-コンテナが起動したら次のコマンドを実行します。
-
-```
-# sed -i -e "s/;clientid=YOUR_GOOGLE_APP_CLIENT_ID/clientid=$GOOGLE_CLIENT_ID/" ~/.skicka.config && sed -i -e "s/;clientsecret=YOUR_GOOGLE_APP_SECRET/clientsecret=$GOOGLE_CLIENT_SECRET/" ~/.skicka.config && skicka -no-browser-auth ls && cat /root/.skicka.tokencache.json
-```
-
-手順2に戻って進めてください。
-
-## Inputs
-
-### `skicka-tokencache-json`
-
-_**必須**_ `skicka`で生成された、アップロードするアカウントの認証情報。
-(`~/.skicka.tokencache.json`の内容)
-
-### `upload-from`
-
-_任意_ アップロード元。 デフォルトはカレントディレクトリ。
-
-### `upload-to`
-
-_**必須**_ アップロード先。 
-
-### `google-client-id`
-
-_任意_ skicka を使用する際の Google APIs の OAuth2.0 Client ID。
-
-### `google-client-secret`
-
-_任意_ skicka を使用する際の Google APIs の OAuth2.0 Client Secret。
-
-### `remove-outdated`
-任意 ローカルにはないが、Google Drive上には存在するファイルを削除するかどうか。  
-`'true'`か`'false'`のどちらかの値  
-**注意**: ローカルに存在しないファイルを検出するため、1度ダウンロードを行うので、大きいファイルを含む操作を行う時はオフを推奨。
-
-## 使用例
+## Example
 
 ```yaml
 - name: Upload to Google Drive
@@ -87,3 +12,74 @@ _任意_ skicka を使用する際の Google APIs の OAuth2.0 Client Secret。
     upload-from: ./
     upload-to: /path/to/upload
 ```
+
+## Get ready 
+
+This action uses [`skicka`](https://github.com/google/skicka) for uploading to Google Drive.
+You need to generate token and register it with GitHub secrets.
+
+### How to generate token
+
+#### Users already using skicka
+
+In your GitHub repository → Settings → Secrets, register by entering `SKICKA_TOKENCACHE_JSON` for name and the content of `~/.skicka.tokencache.json` for value.
+
+#### Users who have never used `skicka`
+
+1. Setup Docker and execute following command.
+    ```sh
+    docker run --rm -it --entrypoint "" satackey/skicka sh -c "skicka -no-browser-auth ls && cat /root/.skicka.tokencache.json"
+    ```
+1. Access the URL showed in the output
+1. Grant access, paste code showed in the browser into the terminal.
+1. In your GitHub repository → Settings → Secrets, register by entering `SKICKA_TOKENCACHE_JSON` for name and the content of `~/.skicka.tokencache.json` for value.
+
+    ```json
+    {"ClientId":"xxx-xxxxx.apps.googleusercontent.com","access_token":"xxxx.xx-xxxxxxxxx","token_type":"Bearer","refresh_token":"x//xxxxxxx-xxxxxxx","expiry":"2020-01-03T06:11:01.3298117Z"}
+    ````
+
+##### Troubleshooting of sign in
+
+As of Jan. 2, 2020, for the accounts that sign in to skicka for the first time, may have a problem of being displayed as `Sign in with Google temporarily disabled for this app`.
+The workaround is to set up the Google Drive API client ID and secret, and set them in skicka.
+
+[Follow this article (japanese only)](https://qiita.com/satackey/items/34c7fc5bf77bd2f5c633) to set up a client ID and secret. [See Translated by Google](https://translate.google.com/translate?&sl=ja&tl=en&u=https%3A%2F%2Fqiita.com%2Fsatackey%2Fitems%2F34c7fc5bf77bd2f5c633)
+
+Replace `xxxx-your-google-client-id-xx.googleusercontent.com` and `xxx_yourGoogleClientSecret_xxxx`, run the following command.
+
+```shell
+$ docker run -e GOOGLE_CLIENT_ID=xxxx-your-google-client-id-xx.googleusercontent.com -e GOOGLE_CLIENT_SECRET=xxx_yourGoogleClientSecret_xxxx --rm -it --entrypoint "ash" satackey/skicka
+```
+
+When the container starts, run the following command.
+```
+# sed -i -e "s/;clientid=YOUR_GOOGLE_APP_CLIENT_ID/clientid=$GOOGLE_CLIENT_ID/" ~/.skicka.config && sed -i -e "s/;clientsecret=YOUR_GOOGLE_APP_SECRET/clientsecret=$GOOGLE_CLIENT_SECRET/" ~/.skicka.config && skicka -no-browser-auth ls && cat /root/.skicka.tokencache.json
+```
+
+Return to step 2 and proceed.
+
+## Inputs
+
+- `skicka-tokencache-json` **Required**  
+    The credentials of the account to upload, generated by `skicka`. (Contents of `~/.skicka.tokencache.json`)
+
+- `upload-from` optional  
+    Upload source path. Default is the current directory.
+
+- `upload-to` optional  
+    Upload destination path.
+
+- `google-client-id` optional  
+    OAuth2.0 client ID of Google APIs when using skicka.
+
+- `google-client-secret` optional  
+    OAuth2.0 Client Secret of Google APIs when using skicka.
+
+- `remove-outdated` optional  
+    Whether to delete files that are not local but exist on Google Drive, either `'true'` or`' false'`  
+    > **Note**: It is recommended to turn it off when performing operations involving large files, because it detects files that do not exist locally and downloads them.
+
+## Contribution
+PRs are accepted.
+
+If you are having trouble or future request, [post new issue](https://github.com/satackey/action-google-drive/issues/new).
