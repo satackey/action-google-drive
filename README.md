@@ -75,8 +75,8 @@ Return to step 2 and proceed.
 - `google-client-secret` optional  
     OAuth2.0 Client Secret of Google APIs when using skicka.
 
-- `remove-outdated` optional  
-    Whether to delete files that are not local but exist on Google Drive, either `'true'` or`' false'`  
+- `remove-outdated` optional, default: `'true'`  
+    Whether to delete files that are not local but exist on Google Drive, either `'true'` or `'false'`  
     > **Note**: It is recommended to turn it off when performing operations involving large files, because it detects files that do not exist locally and downloads them.
 
 ## Contribution
