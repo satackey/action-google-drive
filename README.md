@@ -11,6 +11,10 @@ This action uploads the specified directory/files to Google Drive.
     skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
     upload-from: ./
     upload-to: /path/to/upload
+
+    # For those who set up Google Drive API client ID and secret themselves
+    google-client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
+    google-client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
 ```
 
 ## Get ready 
@@ -56,7 +60,7 @@ When the container starts, run the following command.
 # sed -i -e "s/;clientid=YOUR_GOOGLE_APP_CLIENT_ID/clientid=$GOOGLE_CLIENT_ID/" ~/.skicka.config && sed -i -e "s/;clientsecret=YOUR_GOOGLE_APP_SECRET/clientsecret=$GOOGLE_CLIENT_SECRET/" ~/.skicka.config && skicka -no-browser-auth ls && cat /root/.skicka.tokencache.json
 ```
 
-Return to step 2 and proceed.
+Return to step 2 and proceed, and similarly **register your client ID and secret to the GitHub secret**.
 
 ## Inputs
 
@@ -70,7 +74,9 @@ Return to step 2 and proceed.
     Upload destination path.
 
 - `google-client-id` optional  
-    OAuth2.0 client ID of Google APIs when using skicka.
+    OAuth2.0 client ID of Google APIs when using skicka.  
+    **Required** for those who set up Google Drive API client ID and secret themselves.
+    (Same for `google-client-secret` below)
 
 - `google-client-secret` optional  
     OAuth2.0 Client Secret of Google APIs when using skicka.
