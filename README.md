@@ -17,7 +17,7 @@ This action uploads the specified directory/files to Google Drive.
     google-client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
 ```
 
-## Get ready 
+## Get ready
 
 This action uses [`skicka`](https://github.com/google/skicka) for uploading to Google Drive.
 You need to generate token and register it with GitHub secrets.
@@ -47,7 +47,7 @@ In your GitHub repository → Settings → Secrets, register by entering `SKICKA
 As of Jan. 2, 2020, for the accounts that sign in to skicka for the first time, may have a problem of being displayed as `Sign in with Google temporarily disabled for this app`.
 The workaround is to set up the Google Drive API client ID and secret, and set them in skicka.
 
-[Follow this article (japanese only)](https://qiita.com/satackey/items/34c7fc5bf77bd2f5c633) to set up a client ID and secret. [See Translated by Google](https://translate.google.com/translate?&sl=ja&tl=en&u=https%3A%2F%2Fqiita.com%2Fsatackey%2Fitems%2F34c7fc5bf77bd2f5c633)
+[Follow this article (japanese only)](https://qiita.com/satackey/items/34c7fc5bf77bd2f5c633) to set up a client ID and secret. [See translated by Google](https://translate.google.com/translate?&sl=ja&tl=en&u=https%3A%2F%2Fqiita.com%2Fsatackey%2Fitems%2F34c7fc5bf77bd2f5c633)
 
 Replace `xxxx-your-google-client-id-xx.googleusercontent.com` and `xxx_yourGoogleClientSecret_xxxx`, run the following command.
 
