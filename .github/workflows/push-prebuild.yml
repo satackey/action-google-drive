@@ -17,7 +17,7 @@ jobs:
       run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
 
     - name: Push
-      uses: satackey/push-prebuilt-action@release-support-docker-action
+      uses: satackey/push-prebuilt-action@v0.1
       with:
         push-branch: release-${{ steps.name.outputs.branch }}
         docker-registry: docker.io
