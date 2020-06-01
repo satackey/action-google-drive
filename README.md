@@ -4,6 +4,8 @@ This action uploads the specified directory/files to Google Drive.
 
 ## Example
 
+### Upload
+
 ```yaml
 - name: Upload to Google Drive
   uses: satackey/action-google-drive@v1
@@ -11,6 +13,21 @@ This action uploads the specified directory/files to Google Drive.
     skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
     upload-from: ./
     upload-to: /path/to/upload
+
+    # For those who set up Google Drive API client ID and secret themselves
+    google-client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
+    google-client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+```
+
+### Donwload
+
+```yaml
+- name: Download from Google Drive
+  uses: satackey/action-google-drive@v1
+  with:
+    skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
+    download-from: /path/to/download
+    download-to: ./
 
     # For those who set up Google Drive API client ID and secret themselves
     google-client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
@@ -70,8 +87,14 @@ Return to step 2 and proceed, and similarly **register your client ID and secret
 - `upload-from` optional  
     Upload source path. Default is the current directory.
 
-- `upload-to` optional  
+- `upload-to` **Required** for upload  
     Upload destination path.
+
+- `download-from` **Required** for download  
+    Download source path.
+
+- `download-to` optional  
+    Download destination path. Default is the current directory.
 
 - `google-client-id` optional  
     OAuth2.0 client ID of Google APIs when using skicka.  
