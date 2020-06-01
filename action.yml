@@ -1,8 +1,8 @@
-name: 'Upload to Google Drive'
-description: 'Upload files to Google Drive'
+name: Intaract with Google Drive
+description: Upload/Download files to/from Google Drive
 
 branding:
-  icon: 'upload-cloud'
+  icon: upload-cloud
   color: 'gray-dark'
 
 inputs:
@@ -17,7 +17,16 @@ inputs:
 
   upload-to:
     description: 'The path where the files to be uploaded is located'
-    required: true
+    required: false
+
+  download-from:
+    description: The path where the files to download are located
+    required: false
+
+  download-to:
+    description: The path where the files to be downloaded is located
+    required: false
+    default: ./
 
   remove-outdated:
     description: 'Whether to delete files that do not exist locally'
@@ -40,6 +49,8 @@ runs:
     SKICKA_TOKENCACHE_JSON: ${{ inputs.skicka-tokencache-json }}
     UPLOAD_FROM: ${{ inputs.upload-from }}
     UPLOAD_TO: ${{ inputs.upload-to }}
+    DOWNLOAD_FROM: ${{ inputs.download-from }}
+    DOWNLOAD_TO: ${{ inputs.download-to }}
     REMOVE_OUTDATED: ${{ inputs.remove-outdated }}
     GOOGLE_CLIENT_ID: ${{ inputs.google-client-id }}
     GOOGLE_CLIENT_SECRET: ${{ inputs.google-client-secret }}
