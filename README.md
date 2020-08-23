@@ -109,6 +109,10 @@ Return to step 2 and proceed, and similarly **register your client ID and secret
     > **Note**: It is recommended to turn it off when performing operations involving large files, because it detects files that do not exist locally and downloads them.
 
 ## Contribution
-PRs are accepted.
+PRs are accepted. Contributions to the [roadmap](#roadmap) are also welcome!
 
 If you are having trouble or feature request, [post new issue](https://github.com/satackey/action-google-drive/issues/new).
+
+### Roadmap
+- Support Windows / macOS runner ([#9](https://github.com/satackey/action-google-drive/issues/6))
+- Embedded skicka metadata caching
