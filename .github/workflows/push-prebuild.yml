@@ -24,3 +24,11 @@ jobs:
         docker-user: satackey
         docker-token: ${{ secrets.DOCKERHUB_TOKEN }}
         docker-repotag: docker.io/satackey/action-google-drive:${{ github.sha }}
+
+    - name: Update latest tag
+      if: github.ref === 'refs/heads/master'
+      run: |
+        docker tag \
+          docker.io/satackey/action-google-drive:${{ github.sha }} \
+          docker.io/satackey/action-google-drive:latest
+        docker push docker.io/satackey/action-google-drive:latest
