@@ -26,7 +26,7 @@ jobs:
         docker-repotag: docker.io/satackey/action-google-drive:${{ github.sha }}
 
     - name: Update latest tag
-      if: github.ref === 'refs/heads/master'
+      if: github.ref == 'refs/heads/master'
       run: |
         docker tag \
           docker.io/satackey/action-google-drive:${{ github.sha }} \
