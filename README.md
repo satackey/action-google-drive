@@ -1,6 +1,6 @@
-# Upload to Google Drive
+# Interact with Google Drive
 
-This action uploads the specified directory/files to Google Drive.
+This action uploads/downloads files to/from Google Drive
 
 ## Example
 
